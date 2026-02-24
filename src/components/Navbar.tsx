@@ -19,13 +19,14 @@ const Navbar = () => {
                 <p className='hidden md:block text-md font-medium tracking-wider'>TRENDLAMA.</p>
             </Link>
             {/* Right Section */}
-            <div className='flex'>
+            <div className='flex items-center gap-6'>
                 <SearchBar />
                 <Link href="/" >
-                    <Home />
+                    <Home className='w-4 h-4 text-gray-600'/>
                 </Link>
-                <Bell />
-                <ShoppingCart />
+                <Bell className='w-4 h-4 text-gray-600' />
+                <ShoppingCart className='w-4 h-4 text-gray-600' />
+                <Link href="/login">Sign in</Link>
             </div>
         </nav>
     )
