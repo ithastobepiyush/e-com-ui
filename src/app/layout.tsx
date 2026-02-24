@@ -1,12 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import headlessui from '@headlessui/react'
-// import { BeakerIcon } from '@heroicons/react/24/outline'
-import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-// import Header from "@/components/Header";
 
 
 const geistSans = Geist({
@@ -36,7 +32,6 @@ export default function RootLayout({
       >
         <div className="mx-auto p-4 sm:max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-6xl">
           <Navbar />
-          {/* <Header /> */}
           {children}
           <Footer />
         </div>
