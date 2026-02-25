@@ -31,15 +31,17 @@ const ProductCard = ({ product }: { product: ProductType }) => {
   return (
     // product card division
     <div className='shadow-lg rounded-lg overflow-hidden'>
+
       {/* Image */}
       <Link href={`/product/${product.id}`}>
 
         <div className='relative aspect-[2/3]'>
           <Image
-            src={product.images[product.colors[0]]}
+            src={product.images[productTypes.color]}
             alt={product.name}
             fill
-            className='obeject-cover hover:scale-105 transition-all duration-300' />
+            className='obeject-cover hover:scale-105 transition-all duration-300'
+          />
         </div>
       </Link>
 
@@ -76,7 +78,7 @@ const ProductCard = ({ product }: { product: ProductType }) => {
               
               {product.colors.map(color => (
                 <div
-                  className={`cursor-pointer border-1 rounded-full ${productTypes.color === color ? "bg-gray-300" : "border-gray-500"}`}
+                  className={`cursor-pointer border-1 ${productTypes.color === color ? "border-black" : "border-gray-200"} rounded-full p-[1.2px] `}
                   key={color}
                   onClick={()=>handleProductType({type:"color", value:color})}
                 >
