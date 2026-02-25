@@ -1,3 +1,4 @@
+import ProductCard from "@/components/ProductCard"
 import ProductList from "@/components/ProductList"
 import Image from "next/image"
 
@@ -7,7 +8,8 @@ const Homepage = () => {
       <div className="relative aspect-[3/1] mb-12">
         <Image src="/featured.png" alt="featured" fill />
       </div>
-      <ProductList/>
+      <ProductList />
+
     </div>
   )
 }
