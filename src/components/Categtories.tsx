@@ -1,6 +1,5 @@
 "use client";
 import React from 'react'
-// import { useSearchParams } from 'next/navigation';
 
 import {
   Footprints,
@@ -11,8 +10,6 @@ import {
   Hand,
   Venus,
 } from "lucide-react";
-import { log } from 'console';
-// import { useSearchParams } from 'next/navigation';
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 const categories = [
@@ -69,10 +66,8 @@ const Categtories = () => {
     const handleChange = (value:string | null) =>{
       const params = new URLSearchParams(searchParams)
       params.set("category", value || "all");
-      router.push(`${pathname}?$${params.toString()}`, { scroll:false});
+      router.push(`${pathname}?${params.toString()}`, { scroll:false});
     };
-
-    console.log(selectedCategory);
 
   return (
     <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-6 xl:grid-cols-8 gap-8 bg-gray-400 p-2b rounded-lg mb-4 test-sm'>
