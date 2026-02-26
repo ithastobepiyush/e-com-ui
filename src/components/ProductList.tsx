@@ -127,6 +127,7 @@ const ProductList = ({
 
   return (
     <div className='w-full'>
+      
       <Categtories />
       {params === "products" && <Filter />}
 
