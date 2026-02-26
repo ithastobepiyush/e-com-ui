@@ -7,7 +7,7 @@ import ShoppiingCartIcon from './ShoppingCartIcon'
 
 const Navbar = () => {
     return (
-        <nav className='w-full flex items-center justify-between border-b border-gray-200 pb-4'>
+        <nav className='w-full py-5 flex items-center justify-between border-b border-gray-200 pb-4'>
             {/* Left Section */}
             <Link href="/" className='flex items-center'>
                 <Image
