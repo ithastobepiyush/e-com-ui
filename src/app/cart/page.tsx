@@ -8,16 +8,16 @@ import Image from 'next/image';
 
 const steps = [
   {
-    id:1,
-    title:"Shopping Cart"
+    id: 1,
+    title: "Shopping Cart"
   },
   {
-    id:2,
-    title:"Shipping Address"
+    id: 2,
+    title: "Shipping Address"
   },
   {
-    id:3,
-    title:"Payment Method"
+    id: 3,
+    title: "Payment Method"
   },
 ]
 
@@ -89,20 +89,20 @@ const CartPage = () => {
       <h1 className='text-2xl font-medium'>Your Shopping Cart</h1>
       {/* STEPS */}
       <div className='flex flex-col lg:flex-row items-center gap-8 lg:gap-8'>
-        
-        {steps.map((step) =>(
+
+        {steps.map((step) => (
 
           <div
             className={`flex items-center gap-2 border-b-2 pb-4
-            ${step.id ===activeStep ? "border-gray-800" : "border-gray-200"}`}
+            ${step.id === activeStep ? "border-gray-800" : "border-gray-200"}`}
             key={step.id}>
 
             <div
               className={`w-6 h-6 rounded-full text-white p-4 flex items-center justify-center 
-              ${step.id ===activeStep ? "bg-gray-800" : "bg-gray-300"}`}>
+              ${step.id === activeStep ? "bg-gray-800" : "bg-gray-300"}`}>
               {step.id}
             </div>
-            <p className= {`text-sm font-medium ${step.id ===activeStep ? "text-gray-800" : "text-gray-500"}`}>
+            <p className={`text-sm font-medium ${step.id === activeStep ? "text-gray-800" : "text-gray-500"}`}>
               {step.title}
             </p>
 
@@ -116,15 +116,15 @@ const CartPage = () => {
         <div className='w-full lg:w-7/12 shadow-lg border-gray-100 border-1 p-8 rounded-lg flex flex-col gap-8'>
           {activeStep === 1 ? (
 
-            cartItems.map(item=>(
+            cartItems.map(item => (
               //SINGLE CART ITEM
-              <div className='flex items-center justify-between'key={item.id}>
+              <div className='flex items-center justify-between' key={item.id}>
                 {/* IMAGE AND DETAILS */}
                 <div className='flex gap-8'>
                   {/* IMAGE */}
                   <div className='relative w-32 h-32 bg-ray-50 rounded-lg overflow-hidden'>
                     <Image
-                      src={item.images[item.selectedColor]}
+                      src={(item.images as any)[item.selectedColor]}
                       alt={item.name}
                       fill
                       className='object-contain'
@@ -148,13 +148,13 @@ const CartPage = () => {
               </div>
             ))
           ) :
-          activeStep === 2 ? ( 
-          <ShippingForm/>
-        ) : activeStep === 3 && shippingForm ? (
-          <PaymentForm /> )
-          : (
-          <p className='text-sm text-gray-500'>Please fill in the Shipping Form to Continue.</p> )
-          }       
+            activeStep === 2 ? (
+              <ShippingForm />
+            ) : activeStep === 3 && shippingForm ? (
+              <PaymentForm />)
+              : (
+                <p className='text-sm text-gray-500'>Please fill in the Shipping Form to Continue.</p>)
+          }
         </div>
 
 
@@ -169,8 +169,8 @@ const CartPage = () => {
               <p className='text-gray-800'>Subtotal</p>
               <p className='font-medium'>
                 $
-                {cartItems.reduce (
-                  (acc,item) => acc + item.price * item.quantity,
+                {cartItems.reduce(
+                  (acc, item) => acc + item.price * item.quantity,
                   0).toFixed(2)}
               </p>
             </div>
@@ -197,20 +197,20 @@ const CartPage = () => {
               <p className='text-gray-950 font-bold'>Total</p>
               <p className='font-medium'>
                 $
-                {cartItems.reduce (
-                  (acc,item) => acc + item.price * item.quantity,
+                {cartItems.reduce(
+                  (acc, item) => acc + item.price * item.quantity,
                   0).toFixed(2)}
               </p>
             </div>
-            
+
           </div>
-          {activeStep === 1 && 
+          {activeStep === 1 &&
             <button
-              onClick={()=>router.push("/cart?step=2", {scroll: false})}
+              onClick={() => router.push("/cart?step=2", { scroll: false })}
               className='flex items-center justify-center gap-3 w-full bg-gray-700 text-white p-2 rounded-lg cursor-pointer hover:bg-gray-900 transition-all duration-300'>
               Continue
-              <ArrowRight className='w-3 h-3'/>
-          </button>
+              <ArrowRight className='w-3 h-3' />
+            </button>
           }
 
         </div>
