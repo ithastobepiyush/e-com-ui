@@ -1,7 +1,10 @@
 "use client";
-import { ArrowRight } from 'lucide-react';
+import PaymentForm from '@/components/PaymentForm';
+import ShippingForm from '@/components/ShippingForm';
+import { ArrowRight, Trash2 } from 'lucide-react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import React from 'react'
+import React, { useState } from 'react'
+import Image from 'next/image';
 
 const steps = [
   {
@@ -75,8 +78,9 @@ const cartItems = [
 ]
 
 const CartPage = () => {
-  const searchParams = useSearchParams()
-  const router = useRouter()
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const [shippingForm, setShippingForm] = useState(null);
 
   const activeStep = parseInt(searchParams.get("step") || "1")
   return (
@@ -107,15 +111,61 @@ const CartPage = () => {
       </div>
       {/* STEPS & DETAILS */}
       <div className='w-full flex flex-col lg:flex-row gap-16'>
-        {/* STEPS */}
-        <div className='w-full lg:w-7/12 shadow-lg border-gray-100 border-1 p-8 rounded-lg flex flex-col gap-8'>steps</div>
-        {/* DETAILS */}
-        <div className='w-full lg:w-5/12 shadow-lg border-gray-100 border-1 p-8 rounded-lg flex flex-col gap-8'>
-          <h2 className='font-semibold'>Cart Details</h2>
 
+        {/* STEPS */}
+        <div className='w-full lg:w-7/12 shadow-lg border-gray-100 border-1 p-8 rounded-lg flex flex-col gap-8'>
+          {activeStep === 1 ? (
+
+            cartItems.map(item=>(
+              //SINGLE CART ITEM
+              <div className='flex items-center justify-between'key={item.id}>
+                {/* IMAGE AND DETAILS */}
+                <div className='flex gap-8'>
+                  {/* IMAGE */}
+                  <div className='relative w-32 h-32 bg-ray-50 rounded-lg overflow-hidden'>
+                    <Image
+                      src={item.images[item.selectedColor]}
+                      alt={item.name}
+                      fill
+                      className='object-contain'
+                    />
+                  </div>
+                  {/* IMAGE DETAILS */}
+                  <div className='flex flex-col justify-between'>
+                    <div className='flex flex-col gap-1'>
+                      <p className='text-sm font-medium'>{item.name}</p>
+                      <p className='text-xs text-gray-500'>Quantity:{" "}{item.quantity}</p>
+                      <p className='text-xs text-gray-500'>Size:{" "}{item.selectedSize.toUpperCase()}</p>
+                      <p className='text-xs text-gray-500'>Color:{" "}{item.selectedColor}</p>
+                    </div>
+                    <p className='font-medium'>${item.price.toFixed(2)}</p>
+                  </div>
+                </div>
+                {/* DELETE BUTTON */}
+                <button className='flex items-center justify-center w-8 h-8 rounded-full bg-red-100 hover:bg-red-200 transition-all duration-300 text-red-500 cursor-pointer'>
+                  <Trash2 className='w-5 h-5' />
+                </button>
+              </div>
+            ))
+          ) :
+          activeStep === 2 ? ( 
+          <ShippingForm/>
+        ) : activeStep === 3 && shippingForm ? (
+          <PaymentForm /> )
+          : (
+          <p className='text-sm text-gray-500'>Please fill in the Shipping Form to Continue.</p> )
+          }       
+        </div>
+
+
+
+        {/* CART DETAILS TOTAL AMOUNT */}
+        <div className='w-full h-max lg:w-5/12 shadow-lg border-gray-100 border-1 p-8 rounded-lg flex flex-col gap-8'>
+          <h2 className='font-semibold'>Cart Details</h2>
           <div className='flex flex-col gap-4'>
+
             {/* Subtotal Section */}
-            <div className='text-sm font-medium flex justify-between'>
+            <div className='text-sm flex justify-between'>
               <p className='text-gray-800'>Subtotal</p>
               <p className='font-medium'>
                 $
@@ -126,19 +176,25 @@ const CartPage = () => {
             </div>
 
             {/* Discount Section */}
-            <div className='text-sm font-medium flex justify-between'>
+            <div className='text-sm flex justify-between'>
               <p className='text-gray-800'>Discount(10%)</p>
               <p className='font-medium'>
                 $
-                {cartItems.reduce (
-                  (acc,item) => acc + item.price * item.quantity,
-                  0).toFixed(2)}
               </p>
             </div>
 
             {/* Shipping Fee Section */}
-            <div className='text-sm font-medium flex justify-between'>
+            <div className='text-sm flex justify-between'>
               <p className='text-gray-800'>Shipping Fee</p>
+              <p className='font-medium'>
+                $
+              </p>
+            </div>
+
+            <hr className='border-gray-350' />
+            {/* Total Section */}
+            <div className='text-lg font-medium flex justify-between'>
+              <p className='text-gray-950 font-bold'>Total</p>
               <p className='font-medium'>
                 $
                 {cartItems.reduce (
@@ -148,10 +204,14 @@ const CartPage = () => {
             </div>
             
           </div>
-          <button className='flex items-center justify-center gap-3 w-full bg-gray-700 text-white p-2 rounded-lg cursor-pointer hover:bg-gray-900 transition-all duration-300'>
-            Continue
-            <ArrowRight className='w-3 h-3'/>
+          {activeStep === 1 && 
+            <button
+              onClick={()=>router.push("/cart?step=2", {scroll: false})}
+              className='flex items-center justify-center gap-3 w-full bg-gray-700 text-white p-2 rounded-lg cursor-pointer hover:bg-gray-900 transition-all duration-300'>
+              Continue
+              <ArrowRight className='w-3 h-3'/>
           </button>
+          }
 
         </div>
       </div>
