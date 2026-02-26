@@ -14,9 +14,9 @@ const Footer = () => {
             height={36}
             className="w-6 h-6 md:w-9 md:h-9"
           />
-          <p className='hidden md:block text-md font-medium tracking-wider text-white'>Store4U.</p>
+          <p className='hidden md:block text-md font-medium tracking-wider text-white'>Store4you.</p>
         </Link>
-        <p className='text-sm text-gray-400'>Ⓒ 2026 Store4U</p>
+        <p className='text-sm text-gray-400'>Ⓒ 2026 Store4you.</p>
         <p className='text-sm text-gray-400'>All rights reserveed</p>
       </div>
       <div className='flex flex-col text-sm text-gray-400 items-center md:items-start'>
