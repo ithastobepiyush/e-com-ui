@@ -50,3 +50,12 @@ export const paymentFormSchema = z.object({
     cvv:z.string().min(3, "CVV is required!").max(3, "CVV is required!"),
 })
 export type paymentFormInputs = z.infer<typeof paymentFormSchema>
+
+export type CartStoreStateType ={
+    cart: CartItemsType
+}
+export type CartStoreActionType = {
+    addToCart: (product: CartItemType ) => void
+    removeFromCart: (product: CartItemType ) => void
+    clearCart: () => void
+}

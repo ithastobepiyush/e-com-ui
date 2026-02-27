@@ -4,7 +4,7 @@ import Image from "next/image"
 
 const Footer = () => {
   return (
-    <div className='mt-16 flex flex-col items-center md:flex-row md:items-start bg-gray-800 p-8 rounded-lg md:justify-between gap-8 md:gap-0'>
+    <div className='mt-16 mb-5 flex flex-col items-center md:flex-row md:items-start bg-gray-800 p-8 rounded-lg md:justify-between gap-8 md:gap-0'>
       <div className='flex flex-col gap-4'>
         <Link href="/" className='flex items-center md:items-start'>
           <Image
