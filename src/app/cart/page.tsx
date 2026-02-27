@@ -109,6 +109,8 @@ const CartPage = () => {
           </div>
         ))}
       </div>
+
+      
       {/* STEPS & DETAILS */}
       <div className='w-full flex flex-col lg:flex-row gap-16'>
 
@@ -149,7 +151,7 @@ const CartPage = () => {
             ))
           ) :
             activeStep === 2 ? (
-              <ShippingForm />
+              <ShippingForm setShippingForm={setShippingForm}/>
             ) : activeStep === 3 && shippingForm ? (
               <PaymentForm />)
               : (
@@ -204,6 +206,8 @@ const CartPage = () => {
             </div>
 
           </div>
+
+          
           {activeStep === 1 &&
             <button
               onClick={() => router.push("/cart?step=2", { scroll: false })}
