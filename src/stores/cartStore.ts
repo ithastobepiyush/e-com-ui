@@ -1,5 +1,5 @@
 import { CartStoreActionType, CartStoreStateType } from '@/types'
-import { create } from 'zustand'
+
 
 const useCartStore = create<CartStoreStateType & CartStoreActionType>((set) => ({
   cart: [],
