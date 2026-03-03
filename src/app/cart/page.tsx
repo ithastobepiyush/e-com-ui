@@ -155,9 +155,12 @@ const CartPage = () => {
                 {/* DELETE BUTTON */}
                 <button
                   onClick={() => removeFromCart(item)}
+
                   className='flex items-center justify-center w-8 h-8 rounded-full bg-red-100 hover:bg-red-200 transition-all duration-300 text-red-500 cursor-pointer'>
+
                   <Trash2 className='w-5 h-5' />
                 </button>
+                
               </div>
             ))
           ) :
